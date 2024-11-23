@@ -2,7 +2,7 @@ import BaseConverter as bc
 import tkinter as tk
 import pyperclip as ppc
 
-GUIVersion = "1.2"
+GUIVersion = "1.2.1"
 val = "input values!"
 
 def conv():
@@ -17,7 +17,7 @@ def conv():
 def swap_text():
 	temp = ent_b1.get()
 	num = conv()
-	if num == "input all values!":
+	if "!" in num:
 		num = ""
 	ent_b1.delete(0, tk.END)
 	ent_b1.insert(0, ent_b2.get())
@@ -27,6 +27,12 @@ def swap_text():
 
 	ent_i1.delete(0, tk.END)
 	ent_i1.insert(0, str(num))
+
+def clear_text():
+		ent_i1.delete(0, tk.END)
+		ent_b1.delete(0, tk.END)
+		ent_b2.delete(0, tk.END)
+
 
 def doCopy():
 	ppc.copy(conv())
@@ -62,11 +68,14 @@ label.grid(row=2,column=2,padx=10,pady=10)
 answer = tk.Label(root, text=str(val), font=("Montserrat",16))
 answer.grid(row=2,column=3,padx=10,pady=10)
 
-copy_button = tk.Button(root, text="copy", font=("Montserrat", 16), command=doCopy)
+copy_button = tk.Button(root, text="copy", font=("Montserrat", 12), command=doCopy)
 copy_button.grid(row=3,column=3,padx=10,pady=10)
 
-swap_button = tk.Button(root, text="swap", font=("Montserrat", 16), command=swap_text)
+swap_button = tk.Button(root, text="swap", font=("Montserrat", 12), command=swap_text)
 swap_button.grid(row=3,column=1,padx=10,pady=10)
+
+clear_button = tk.Button(root, text="clear", font=("Montserrat", 12), command=clear_text)
+clear_button.grid(row=3,column=0,padx=10,pady=10,sticky="W")
 
 root.after(0,conv)
 root.mainloop()

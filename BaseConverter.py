@@ -111,7 +111,7 @@ def baseToBase(num, base1, base2):
     
     for digit in num:
         if digit not in digits[0:abs(base1)] and digit != ".":
-            return "invalid number"
+            return "invalid number!"
     if num == "":
         return ""
     if base2 == 1:
